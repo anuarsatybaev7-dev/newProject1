@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="w2.css"> <!-- если есть отдельный CSS -->
+    <style>
+        /* Стили фона */
+        body {
+            margin: 0;
+            height: 100vh;
+            background-image: url('fon1.jpg'); /* путь к вашей картинке */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center; /* центр по горизонтали */
+            align-items: center;     /* центр по вертикали */
+            font-family: Arial, sans-serif;
+        }
+
+        /* Контейнер для авторизации */
+        .auth-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .auth-container input {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .auth-container button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .auth-container button:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+    </style>
+</head>
+<body>
+
+<div class="auth-container">
+    <h2>Авторизация</h2>
+    <form id="loginForm">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button type="submit">Войти</button>
+    </form>
+</div>
+
+<script>
+    // Находим форму один раз
+    const form = document.getElementById('loginForm');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Проверка логина и пароля
+        if(email === 'anuar@mail.ru' && password === '123') {
+            // Сохраняем в localStorage
+            localStorage.setItem('userEmail', email);
+
+            // Перенаправление на другую страницу
+            window.location.href = 'welcome.html';
+        } else {
+            alert('Неверный логин или пароль!');
+        }
+    });
+</script>
+
+</body>
+</html>

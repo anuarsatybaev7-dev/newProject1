@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Финальная страница</title>
+<style>
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background-image: url('коноха3.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        gap: 40px; /* расстояние между первой и второй строкой */
+    }
+
+    .cards-row {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        perspective: 1000px;
+    }
+
+    .card {
+        width: 200px;
+        height: 300px;
+        cursor: pointer;
+        perspective: 1000px;
+    }
+
+    .card-inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+
+    .card.flipped .card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+        backface-visibility: hidden;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .card-front {
+        background-color: rgba(255,255,255,0.8);
+    }
+
+    .card-front img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card-back {
+        transform: rotateY(180deg);
+        background-color: rgba(0,0,0,0.8);
+        flex-direction: column;
+        opacity: 0;
+    }
+
+    .card.flipped .card-back {
+        opacity: 1;
+    }
+
+    .card-back video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+</style>
+</head>
+<body>
+
+<!-- Первая строка карточек -->
+<div class="cards-row">
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front"><img src="итачи.jpg" alt="Итачи"></div>
+            <div class="card-back"><video src="итачиВидео.mp4"></video></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front"><img src="какши.webp" alt="Какаши"></div>
+            <div class="card-back"><video src="какашиВидео1.mp4"></video></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front"><img src="наруто.jpg" alt="Наруто"></div>
+            <div class="card-back"><video src="нарутоВидео.mp4"></video></div>
+        </div>
+    </div>
+</div>
+
+<!-- Вторая строка карточек -->
+<div class="cards-row">
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front"><img src="саске5.jpg" alt="Саске"></div>
+            <div class="card-back"><video src="саскевидео.mp4"></video></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front"><img src="сакура.jpg" alt="Сакура"></div>
+            <div class="card-back"><video src="сакуравидео.mp4"></video></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front"><img src="минато.webp" alt="Минато"></div>
+            <div class="card-back"><video src="минатовидео.mp4"></video></div>
+        </div>
+    </div>
+</div>
+
+<script>
+const cards = document.querySelectorAll('.card');
+
+function resetCards(exceptCard) {
+    cards.forEach(card => {
+        if(card !== exceptCard) {
+            card.classList.remove('flipped');
+            const video = card.querySelector('video');
+            video.pause();
+            video.currentTime = 0;
+        }
+    });
+}
+
+cards.forEach(card => {
+    const video = card.querySelector('video');
+
+    card.addEventListener('click', () => {
+        const isFlipped = card.classList.contains('flipped');
+        resetCards(card);
+
+        if(!isFlipped){
+            card.classList.add('flipped');
+            video.play();
+        } else {
+            card.classList.remove('flipped');
+            video.pause();
+            video.currentTime = 0;
+        }
+    });
+});
+</script>
+
+</body>
+</html>

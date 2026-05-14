@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Добро пожаловать</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        /* фон заменен на картинку */
+        background-image: url('пейнфон.png');
+        background-size: cover;         /* чтобы картинка занимала весь экран */
+        background-position: center;    /* центрирование */
+        background-repeat: no-repeat;   /* без повторения */
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    .loader-container {
+        position: relative;
+        width: 120px;
+        height: 120px;
+    }
+
+    .loader-circle {
+        stroke-dasharray: 339.292;
+        stroke-dashoffset: 339.292;
+        stroke-width: 8;
+        stroke: #4CAF50;
+        fill: none;
+        r: 54;
+        cx: 60;
+        cy: 60;
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+        transition: stroke-dashoffset 0.05s linear;
+    }
+
+    .loader-background {
+        stroke-width: 8;
+        stroke: #ddd;
+        fill: none;
+    }
+
+    .timer-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    p {
+        margin-top: 15px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Добро пожаловать!</h1>
+<p id="userEmailDisplay"></p>
+
+<div class="loader-container">
+    <svg width="120" height="120">
+        <circle class="loader-background" r="54" cx="60" cy="60"></circle>
+        <circle class="loader-circle" r="54" cx="60" cy="60"></circle>
+    </svg>
+    <div class="timer-text" id="timerText">5</div>
+</div>
+
+<p>Загрузка... Подождите 5 секунд</p>
+
+<script src="helloWord.js"></script>
+</body>
+</html>
